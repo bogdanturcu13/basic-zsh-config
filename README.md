@@ -55,7 +55,7 @@ git clone https://github.com/bogdanturcu13/basic-zsh-config.git
 cd basic-zsh-config
 
 # 3. Da permisos de ejecución al script
-chmod +x personalizar_zsh.sh
+chmod +x zsh-config
 
 # 4. Ejecuta el script con sudo
-sudo ./personalizar_zsh.sh
+sudo ./zsh-config
