@@ -24,8 +24,8 @@ Aquí puedes mostrar cómo queda la terminal después de ejecutar el script.
 
 *(Recomendación: Graba un GIF corto o toma una captura de pantalla, guárdala como `preview.gif` o `preview.png` en una carpeta `assets` dentro de tu repositorio y descomenta la línea de abajo)*
 
-![Placeholder para tu captura](https://user-images.githubusercontent.com/1020698/125217032-09c69300-e298-11eb-8140-a88523c0f68d.png)
-*(Reemplaza esta imagen con tu propia captura de `assets/preview.png`)*
+!(https://user-images.githubusercontent.com/1020698/125217032-09c69300-e298-11eb-8140-a88523c0f68d.png)
+
 
 ---
 
