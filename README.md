@@ -4,7 +4,7 @@
 # 🚀 Automatización de ZSH para Parrot OS
 
 <p>
-  Un script Bash para configurar automáticamente un entorno de terminal ZSH moderno y potente en Parrot OS, incluyendo Oh My Zsh, Powerlevel10k y plugins esenciales de productividad. Este script está pensado para aquellas personas que quieren tener una terminal útil, personalizada y productiva pero sin sobrecargar el sistema operativo con aplicaciones, plugins. Aún así, se pueden integrar todos los plugins que se deseen en el archivo ~/.zshrc, más adelante comentado.
+  Un script Bash para configurar automáticamente un entorno de terminal ZSH moderno y potente en Parrot OS, incluyendo Oh My Zsh, Powerlevel10k y plugins esenciales de productividad. Este script está pensado para aquellas personas que quieren tener una terminal útil, personalizada y productiva pero sin sobrecargar el sistema operativo con aplicaciones y plugins. Aún así, se pueden integrar todos los plugins que se deseen en el archivo ~/.zshrc.
 </p>
 
 <p>
