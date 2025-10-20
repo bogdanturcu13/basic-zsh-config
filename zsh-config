@@ -1,0 +1,62 @@
+#!/bin/bash
+# ============================================================
+# Script de automatización de la personalización del entorno ZSH en Parrot OS
+# Descripción: Instala y configura ZSH, Oh My Zsh, Powerlevel10k y plugins comunes.
+# ============================================================
+
+if [ "$EUID" -ne 0 ]; then
+    echo "Por favor, ejecuta este script con privilegios de administrador."
+    exit 1
+fi
+
+echo "=== Actualizando el sistema ==="
+apt update -y
+
+echo "=== Instalando ZSH ==="
+apt install -y zsh curl git fonts-powerline
+
+echo "=== Verificando instalación de ZSH ==="
+zsh --version || { echo "Error: ZSH no se instaló correctamente."; exit 1; }
+
+# Cambiar shell predeterminada para el usuario actual
+USER_NAME=$(logname)
+echo "=== Configurando ZSH como shell predeterminada para $USER_NAME ==="
+chsh -s "$(which zsh)" "$USER_NAME"
+
+# Instalar Oh My Zsh
+echo "=== Instalando Oh My Zsh ==="
+sudo -u "$USER_NAME" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+# Instalar Powerlevel10k
+echo "=== Instalando tema Powerlevel10k ==="
+sudo -u "$USER_NAME" git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+"${ZSH_CUSTOM:-/home/$USER_NAME/.oh-my-zsh/custom}/themes/powerlevel10k"
+
+# Configurar tema en ~/.zshrc
+ZSHRC="/home/$USER_NAME/.zshrc"
+if grep -q '^ZSH_THEME=' "$ZSHRC"; then
+    sed -i 's|^ZSH_THEME=.*|ZSH_THEME="powerlevel10k/powerlevel10k"|' "$ZSHRC"
+else
+    echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' >> "$ZSHRC"
+fi
+
+# Instalar plugins
+echo "=== Instalando plugins adicionales ==="
+sudo -u "$USER_NAME" git clone https://github.com/zsh-users/zsh-autosuggestions \
+"${ZSH_CUSTOM:-/home/$USER_NAME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+
+sudo -u "$USER_NAME" git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+"${ZSH_CUSTOM:-/home/$USER_NAME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+
+# Activar plugins en .zshrc
+if grep -q '^plugins=' "$ZSHRC"; then
+    sed -i 's|^plugins=.*|plugins=(git zsh-autosuggestions zsh-syntax-highlighting)|' "$ZSHRC"
+else
+    echo 'plugins=(git zsh-autosuggestions zsh-syntax-highlighting)' >> "$ZSHRC"
+fi
+
+# Aplicar cambios
+sudo -u "$USER_NAME" zsh -c "source $ZSHRC"
+
+echo "=== Instalación y configuración completadas correctamente ==="
+echo "Reinicia la sesión para aplicar los cambios."
