@@ -32,6 +32,7 @@ Aquí puedes ver cómo queda la terminal después de ejecutar el script:
 * **Productividad:** Incluye plugins esenciales:
     * `zsh-autosuggestions` (sugerencias basadas en el historial).
     * `zsh-syntax-highlighting` (resaltado de sintaxis en tiempo real).
+* **Configuración de teclado:** Cambia automáticamente el idioma del teclado al español.
 
 ---
 
