@@ -20,11 +20,9 @@
 
 ## 📸 Vista Previa del Resultado
 
-Aquí puedes mostrar cómo queda la terminal después de ejecutar el script.
+Aquí puedes ver cómo queda la terminal después de ejecutar el script:
 
-*(Recomendación: Graba un GIF corto o toma una captura de pantalla, guárdala como `preview.gif` o `preview.png` en una carpeta `assets` dentro de tu repositorio y descomenta la línea de abajo)*
-
-([https://user-images.githubusercontent.com/1020698/125217032-09c69300-e298-11eb-8140-a88523c0f68d.png](https://github.com/bogdanturcu13/basic-zsh-config/blob/main/assets/zsh-function.png))
+![Zsh Function](https://raw.githubusercontent.com/bogdanturcu13/basic-zsh-config/main/assets/zsh-function.png)
 
 ---
 
