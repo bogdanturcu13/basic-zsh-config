@@ -55,6 +55,12 @@ else
     echo 'plugins=(git zsh-autosuggestions zsh-syntax-highlighting)' >> "$ZSHRC"
 fi
 
+# Configurar teclado en español
+echo "Configurando el teclado en español..."
+sudo dpkg-reconfigure keyboard-configuration -f noninteractive
+sudo sed -i 's/XKBLAYOUT=.*/XKBLAYOUT="es"/' /etc/default/keyboard
+sudo setxkbmap es
+
 # Aplicar cambios
 sudo -u "$USER_NAME" zsh -c "source $ZSHRC"
 
