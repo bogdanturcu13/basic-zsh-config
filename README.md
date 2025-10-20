@@ -55,10 +55,10 @@ Simplemente clona este repositorio y ejecuta el script como `root` o con `sudo`.
 
 ```bash
 # 1. Clona el repositorio
-git clone [https://github.com/](https://github.com/)[TU_USUARIO]/[TU_REPOSITORIO].git
+git clone https://github.com/bogdanturcu13/basic-zsh-config.git
 
 # 2. Entra en el directorio
-cd [TU_REPOSITORIO]
+cd basic-zsh-config
 
 # 3. Da permisos de ejecución al script
 chmod +x personalizar_zsh.sh
