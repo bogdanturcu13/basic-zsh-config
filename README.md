@@ -19,8 +19,7 @@
 
 ## 📝 Explicación
 
-Este script está pensado para aquellas personas que quieren tener una terminal útil, personalizada y productiva sin sobrecargar el sistema operativo con aplicaciones y plugins.  
-Permite integrar todos los plugins que desees directamente en el archivo `~/.zshrc`.
+Este script está pensado para aquellas personas que quieren tener una terminal útil, personalizada y productiva sin sobrecargar el sistema operativo con aplicaciones y plugins, aunque permite integrar todos los plugins que desees directamente en el archivo `~/.zshrc` (más información sobre cómo hacerlo en https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh)
 
 **Instrucciones importantes:**
 - Al finalizar la instalación, reinicia el sistema y vuelve a abrir la consola.
