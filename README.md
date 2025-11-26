@@ -66,7 +66,7 @@ git clone https://github.com/bogdanturcu13/basic-zsh-config.git
 cd basic-zsh-config
 
 # 3. Da permisos de ejecución al script
-chmod +x zsh-config
+chmod +x zsh-config-debian   Ó   chmod +x zsh-config-macOS
 
 # 4. Ejecuta el script con sudo
-sudo ./zsh-config
+sudo ./zsh-config-debian   Ó   sudo ./zsh-config-macOS
