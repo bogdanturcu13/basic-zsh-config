@@ -1,0 +1,85 @@
+#!/bin/bash
+
+# ============================================================
+# Desinstalador universal para Debian/Ubuntu/Parrot OS y macOS
+# ============================================================
+
+BACKUP_DIR="$HOME/.zsh_cleanup_backup_$(date +%s)"
+mkdir -p "$BACKUP_DIR"
+
+echo "=== Detectando sistema operativo ==="
+OS="$(uname -s)"
+
+is_debian() {
+    command -v apt &> /dev/null
+}
+
+is_macos() {
+    [ "$OS" = "Darwin" ]
+}
+
+echo "=== Realizando copia de seguridad de archivos importantes ==="
+[ -f "$HOME/.zshrc" ] && cp "$HOME/.zshrc" "$BACKUP_DIR"
+
+# ------------------------------------------------------------
+#     ELIMINAR OH MY ZSH Y COMPONENTES
+# ------------------------------------------------------------
+
+echo "=== Eliminando Oh My Zsh ==="
+if [ -d "$HOME/.oh-my-zsh" ]; then
+    rm -rf "$HOME/.oh-my-zsh"
+    echo "Oh My Zsh eliminado"
+else
+    echo "No se encontró Oh My Zsh"
+fi
+
+echo "=== Eliminando Powerlevel10k ==="
+rm -rf "$HOME/.p10k.zsh"
+rm -rf "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" 2>/dev/null
+
+echo "=== Eliminando plugins ==="
+rm -rf "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" 2>/dev/null
+rm -rf "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" 2>/dev/null
+
+# ------------------------------------------------------------
+#      REPARAR .zshrc
+# ------------------------------------------------------------
+
+if [ -f "$HOME/.zshrc" ]; then
+    echo "=== Limpiando configuraciones de .zshrc ==="
+    sed -i.bak '/powerlevel10k/d' "$HOME/.zshrc"
+    sed -i.bak '/zsh-autosuggestions/d' "$HOME/.zshrc"
+    sed -i.bak '/zsh-syntax-highlighting/d' "$HOME/.zshrc"
+    sed -i.bak 's|plugins=(.*)|plugins=(git)|' "$HOME/.zshrc"
+fi
+
+# ------------------------------------------------------------
+#     DESINSTALAR ZSH (solo si es Linux)
+#     En macOS NO se desinstala porque es parte del sistema.
+# ------------------------------------------------------------
+
+if is_debian; then
+    echo "=== Desinstalando Zsh (Debian/Ubuntu/Parrot) ==="
+    apt remove --purge -y zsh || echo "Zsh no estaba instalado mediante apt."
+    apt autoremove -y
+fi
+
+if is_macos; then
+    echo "=== En macOS NO se elimina Zsh porque es parte del sistema ==="
+fi
+
+# ------------------------------------------------------------
+#     RESTAURAR BASH COMO SHELL POR DEFECTO
+# ------------------------------------------------------------
+
+echo "=== Restaurando Bash como shell predeterminada ==="
+
+if is_debian; then
+    chsh -s /bin/bash "$USER"
+elif is_macos; then
+    chsh -s /bin/bash
+fi
+
+echo "=== Limpieza completada ==="
+echo "Se guardaron copias de seguridad en: $BACKUP_DIR"
+echo "Reinicia la terminal o cierra sesión para aplicar cambios."
