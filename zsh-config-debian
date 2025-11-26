@@ -10,7 +10,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 echo "=== Actualizando el sistema ==="
-apt updgra && apt update -y
+apt update && apt upgrade -y
 
 echo "=== Instalando ZSH ==="
 apt install -y zsh curl git fonts-powerline
