@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 Automatización de ZSH para Parrot OS
+# Automatización de ZSH para Parrot OS
 
 <p>
   Un script Bash para configurar automáticamente un entorno de terminal ZSH moderno y potente en Parrot OS.
